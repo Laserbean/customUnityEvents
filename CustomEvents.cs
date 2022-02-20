@@ -24,5 +24,10 @@ public class MyVector2IntEvent : UnityEvent<Vector2Int>
 {
 }
 
+[System.Serializable]
+public class MyFloatEvent : UnityEvent<float>
+{
+}
+
 
 

@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13195897adade784dac1ec8d5d4be06e, type: 3}
-  m_Name: SpawnSandEvent
+  m_Name: UpdateHealth
   m_EditorClassIdentifier: 

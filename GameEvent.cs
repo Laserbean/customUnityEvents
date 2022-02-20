@@ -20,6 +20,12 @@ public class GameEvent : ScriptableObject
 			listeners[i].OnEventRaised(num);
 	}
 
+	public void Raise2Float(float num1)
+	{
+		for(int i = listeners.Count -1; i >= 0; i--)
+			listeners[i].OnEventRaised(num1);
+	}
+
 	public void Raise2Bool(bool boo)
 	{
 		for(int i = listeners.Count -1; i >= 0; i--)

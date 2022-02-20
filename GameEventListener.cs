@@ -9,6 +9,8 @@ public class GameEventListener : MonoBehaviour
     public UnityEvent Response;
     public MyIntEvent Response2Int;
     public MyBoolEvent Response2Bool;
+    public MyFloatEvent Response2Float;
+
     public MyVector3Event Response2Vector3;
     public MyVector2IntEvent Response2Vector2Int;
 
@@ -39,6 +41,13 @@ public class GameEventListener : MonoBehaviour
     { 
         Response2Bool.Invoke(fish);
     }
+
+    public void OnEventRaised(float fish)
+    { 
+        Response2Float.Invoke(fish);
+    }
+
+
 
     public void OnEventRaised(Vector3 fish)
     { 
