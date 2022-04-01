@@ -28,12 +28,22 @@ public class GameEvent : ScriptableObject
 			listeners[i].OnEventRaised(boo);
 	}
 
+	public void Raise2Vector2(Vector2 vec) {
+		for(int i = listeners.Count -1; i >= 0; i--)
+			listeners[i].OnEventRaised(vec);
+	}
+
 	public void Raise2Vector3(Vector3 vec) {
 		for(int i = listeners.Count -1; i >= 0; i--)
 			listeners[i].OnEventRaised(vec);
 	}
 
 	public void Raise2Vector2Int(Vector2Int vec) {
+		for(int i = listeners.Count -1; i >= 0; i--)
+			listeners[i].OnEventRaised(vec);
+	}
+
+	public void Raise2Vector2Int(Vector3Int vec) {
 		for(int i = listeners.Count -1; i >= 0; i--)
 			listeners[i].OnEventRaised(vec);
 	}
