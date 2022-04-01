@@ -1,4 +1,4 @@
-# UnityEvents
+# customUnityEvents
 Unity event using the unity scriptable objects system
 
 ## Installation
