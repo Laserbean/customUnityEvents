@@ -92,9 +92,9 @@ public enum UsedEvents {
     Vector3Int = 256
 }
 
-
- [CustomEditor(typeof(GameEventListener))]
-  public class GameEventListenerEditor : Editor 
+#if UNITY_EDITOR
+[CustomEditor(typeof(GameEventListener))]
+public class GameEventListenerEditor : Editor 
 {
     SerializedProperty normaltest;
 
@@ -136,3 +136,5 @@ public enum UsedEvents {
         this.serializedObject.ApplyModifiedProperties();
     }
 }
+
+#endif
