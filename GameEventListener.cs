@@ -17,50 +17,39 @@ public class GameEventListener : MonoBehaviour
     public MyStringEvent Respose2String;
 
 
-    private void OnEnable()
-    { 
+    private void OnEnable() { 
         Event.RegisterListener(this); 
     }
 
-    private void OnDisable()
-    { 
+    private void OnDisable() { 
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised()
-    { 
+    public void OnEventRaised() { 
         Response.Invoke();
     }
 
-    public void OnEventRaised(int fish)
-    { 
+    public void OnEventRaised(int fish) { 
         Response2Int.Invoke(fish);
     }
 
-    public void OnEventRaised(bool fish)
-    { 
+    public void OnEventRaised(bool fish) { 
         Response2Bool.Invoke(fish);
     }
 
-    public void OnEventRaised(float fish)
-    { 
+    public void OnEventRaised(float fish) { 
         Response2Float.Invoke(fish);
     }
 
-
-
-    public void OnEventRaised(Vector3 fish)
-    { 
+    public void OnEventRaised(Vector3 fish) { 
         Response2Vector3.Invoke(fish);
     }
 
-    public void OnEventRaised(Vector2Int fish)
-    { 
+    public void OnEventRaised(Vector2Int fish) { 
         Response2Vector2Int.Invoke(fish);
     }
 
-    public void OnEventRaised(string fish)
-    { 
+    public void OnEventRaised(string fish) { 
         Respose2String.Invoke(fish);
     }
 
