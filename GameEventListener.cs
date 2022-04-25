@@ -7,9 +7,10 @@ using UnityEditor;
 [AddComponentMenu("customUnityEvents/Game Event Listener")]
 public class GameEventListener : MonoBehaviour
 {
-    public UsedEvents toggleEventVisibility; 
 
     public GameEvent Event;
+    public UsedEvents toggleEventVisibility; 
+
     [HideInInspector]
     public UnityEvent Response;
     [HideInInspector]
@@ -97,43 +98,112 @@ public enum UsedEvents {
 [CustomEditor(typeof(GameEventListener))]
 public class GameEventListenerEditor : Editor 
 {
+    private SerializedProperty game_event_field;
+    GUIStyle SectionNameStyle;
+    string SectionName;
+    bool showInfo = false;
+
+    private void OnEnable()
+    {
+        game_event_field = serializedObject.FindProperty("Event");
+
+        SectionNameStyle = new GUIStyle();
+
+        SectionNameStyle.fontSize = 15;
+    }
+
+
     SerializedProperty normaltest;
+    private static readonly string[] _dontIncludeMe = new string[]{"m_Script"};
 
     public override void OnInspectorGUI() {
-        base.OnInspectorGUI();
+        // base.OnInspectorGUI();
 
         this.serializedObject.Update();
+
+        // serializedObject.ApplyModifiedProperties();
+        
         var myScript = target as GameEventListener;
 
-        // myScript.toggleEventVisibility = GUILayout.Toggle(myScript.toggleEventVisibility, "Flag");
-        // myScript.test = GUILayout.Toggle(myScript.test, "Some Bool");
-        if((myScript.toggleEventVisibility & UsedEvents.Empty)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response"), true);
+        string eventname = "<Insert Game Event>";
+        string eventtype = ""; 
+        if (game_event_field.objectReferenceValue) {
+            var path = AssetDatabase.GetAssetPath(game_event_field.objectReferenceValue).Split('/');
+            eventname = (path[path.Length-1]).Split('.')[0];
+
+            if((myScript.toggleEventVisibility & UsedEvents.Empty)!= 0){
+                eventtype += " (void)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Int)!= 0){
+                eventtype += " (int)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Bool)!= 0){
+                eventtype += " (bool)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.String)!= 0){
+                eventtype += " (string)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Float)!= 0){
+                eventtype += " (float)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector2)!= 0){
+                eventtype += " (Vector2)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector3)!= 0){
+                eventtype += " (Vector3)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector2Int)!= 0){
+                eventtype += " (Vector2Int)";
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector3Int)!= 0){
+                eventtype += " (Vector3Int)";
+            }
+            // EditorGUILayout.BeginHorizontal();
+            // try {
+            // EditorGUILayout.LabelField(eventname, SectionNameStyle);
+            // } finally {
+            // EditorGUILayout.EndHorizontal();
+            // }
         }
-        if((myScript.toggleEventVisibility & UsedEvents.Int)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Int"), true);
+
+        showInfo = EditorGUILayout.BeginFoldoutHeaderGroup(showInfo, eventname + eventtype);
+
+        if (showInfo) {
+            DrawPropertiesExcluding(serializedObject, _dontIncludeMe);
+
+            // myScript.toggleEventVisibility = GUILayout.Toggle(myScript.toggleEventVisibility, "Flag");
+            // myScript.test = GUILayout.Toggle(myScript.test, "Some Bool");
+            if((myScript.toggleEventVisibility & UsedEvents.Empty)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Int)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Int"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Bool)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Bool"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.String)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Respose2String"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Float)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Float"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector2)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector2"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector3)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector3"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector2Int)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector2Int"), true);
+            }
+            if((myScript.toggleEventVisibility & UsedEvents.Vector3Int)!= 0){
+                EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector3Int"), true);
+            }
+
         }
-        if((myScript.toggleEventVisibility & UsedEvents.Bool)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Bool"), true);
-        }
-        if((myScript.toggleEventVisibility & UsedEvents.String)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Respose2String"), true);
-        }
-        if((myScript.toggleEventVisibility & UsedEvents.Float)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Float"), true);
-        }
-        if((myScript.toggleEventVisibility & UsedEvents.Vector2)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector2"), true);
-        }
-        if((myScript.toggleEventVisibility & UsedEvents.Vector3)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector3"), true);
-        }
-        if((myScript.toggleEventVisibility & UsedEvents.Vector2Int)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector2Int"), true);
-        }
-        if((myScript.toggleEventVisibility & UsedEvents.Vector3Int)!= 0){
-            EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector3Int"), true);
-        }
+        
+        EditorGUILayout.EndFoldoutHeaderGroup();
         this.serializedObject.ApplyModifiedProperties();
     }
 }
