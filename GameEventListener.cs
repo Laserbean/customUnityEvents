@@ -7,8 +7,9 @@ using UnityEditor;
 [AddComponentMenu("customUnityEvents/Game Event Listener")]
 public class GameEventListener : MonoBehaviour
 {
-
+    [Tooltip("Create a GameEvent in the Assets folder. (Create > GameEvent).")]
     public GameEvent Event;
+    [Tooltip("Toggles the visibility of event types in the inspector")]
     public UsedEvents toggleEventVisibility; 
 
     [HideInInspector]
@@ -101,7 +102,7 @@ public class GameEventListenerEditor : Editor
     private SerializedProperty game_event_field;
     GUIStyle SectionNameStyle;
     string SectionName;
-    bool showInfo = false;
+    bool showInfo;
 
     private void OnEnable()
     {
@@ -110,6 +111,7 @@ public class GameEventListenerEditor : Editor
         SectionNameStyle = new GUIStyle();
 
         SectionNameStyle.fontSize = 15;
+        showInfo = false;
     }
 
 
