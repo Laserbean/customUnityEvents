@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEditor;
 
+[AddComponentMenu("customUnityEvents/Game Event Listener")]
 public class GameEventListener : MonoBehaviour
 {
     public UsedEvents toggleEventVisibility; 
