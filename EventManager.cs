@@ -48,6 +48,39 @@ public static class EventManager {
     }
 }
 
+
+// public class EventM<T> {
+//     Type<T> value;
+//     public EventM(Type<T> thing) {
+
+//     }
+// }
+
+public class SingleItemEvent
+{
+    public object value;
+
+    public SingleItemEvent(object _value)
+    {
+        this.value = _value;
+    }
+}
+
+
+public class DoubleItemEvent
+{
+    public object value;
+    public object value2;
+
+    public DoubleItemEvent(object _value, object _value2)
+    {
+        this.value = _value;
+        this.value2 = _value2;
+    }
+}
+
+
+
 /*
 using UnityEngine;
 
