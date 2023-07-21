@@ -46,6 +46,11 @@ public static class EventManager {
             }
         }
     }
+
+
+    public static void Reset() {
+        eventListeners.Clear();
+    }
 }
 
 
