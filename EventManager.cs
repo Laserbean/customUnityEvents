@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-using System; 
+using System;
 
 
 // The EventManager class provides a centralized event system for the game.
-public static class EventManager {
-    
+public static class EventManager
+{
+
     // A dictionary that maps event types to a list of event listeners.
-    private static Dictionary<Type, List<Action<object>>> eventListeners= new Dictionary<Type, List<Action<object>>>();
+    private static Dictionary<Type, List<Action<object>>> eventListeners = new Dictionary<Type, List<Action<object>>>();
 
 
     // Registers a listener for the specified event type.
-    public static void AddListener<T>(Action<T> listener) {
+    public static void AddListener<T>(Action<T> listener)
+    {
         // Get the type of the event being listened for.
         Type eventType = typeof(T);
         // If the event type isn't already in the dictionary, create a new list for it.
@@ -26,7 +28,8 @@ public static class EventManager {
     }
 
     // Removes a listener for the specified event type.
-    public static void RemoveListener<T>(Action<T> listener) {
+    public static void RemoveListener<T>(Action<T> listener)
+    {
         // Get the type of the event being listened for.
         Type eventType = typeof(T);
         // If the event type is in the dictionary, remove the listener from its list of event listeners.
@@ -36,7 +39,8 @@ public static class EventManager {
     }
 
     // Dispatches an event to all listeners of the specified event type.
-    public static void TriggerEvent<T>(T e) {
+    public static void TriggerEvent<T>(T e)
+    {
         // Get the type of the event being triggered.
         Type eventType = typeof(T);
         // If the event type is in the dictionary, call all of its event listeners with the event object.
@@ -47,7 +51,8 @@ public static class EventManager {
         }
     }
 
-    public static void Reset() {
+    public static void Reset()
+    {
         eventListeners.Clear();
     }
 }
