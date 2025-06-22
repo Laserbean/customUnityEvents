@@ -17,24 +17,24 @@ namespace Laserbean.CustomUnityEvents
         [HideInInspector]
         public UnityEvent Response;
         [HideInInspector]
-        public MyIntEvent Response2Int;
+        public UnityEvent<int> IntResponse;
         [HideInInspector]
-        public MyBoolEvent Response2Bool;
+        public UnityEvent<bool> BoolResponse;
         [HideInInspector]
-        public MyFloatEvent Response2Float;
+        public UnityEvent<float> FloatResponse;
 
         [HideInInspector]
-        public MyVector2Event Response2Vector2;
+        public UnityEvent<Vector2> Vector2Response;
         [HideInInspector]
-        public MyVector3Event Response2Vector3;
+        public UnityEvent<Vector3> Vector3Response;
         [HideInInspector]
-        public MyVector2IntEvent Response2Vector2Int;
+        public UnityEvent<Vector2Int> Vector2IntResponse;
         [HideInInspector]
-        public MyVector3IntEvent Response2Vector3Int;
+        public UnityEvent<Vector3Int> Vector3IntResponse;
 
 
         [HideInInspector]
-        public MyStringEvent Respose2String;
+        public UnityEvent<string> StringResponse;
 
 
         private void OnEnable()
@@ -49,47 +49,29 @@ namespace Laserbean.CustomUnityEvents
 
         public void OnEventRaised()
         {
+            Debug.Log("Event raised without value.");
             Response.Invoke();
         }
 
-        public void OnEventRaised(int fish)
+        public void OnEventRaised<T>(T arg)
         {
-            Response2Int.Invoke(fish);
-        }
-
-        public void OnEventRaised(bool fish)
-        {
-            Response2Bool.Invoke(fish);
-        }
-
-        public void OnEventRaised(float fish)
-        {
-            Response2Float.Invoke(fish);
-        }
-
-        public void OnEventRaised(Vector2 fish)
-        {
-            Response2Vector2.Invoke(fish);
-        }
-
-        public void OnEventRaised(Vector3 fish)
-        {
-            Response2Vector3.Invoke(fish);
-        }
-
-        public void OnEventRaised(Vector2Int fish)
-        {
-            Response2Vector2Int.Invoke(fish);
-        }
-
-        public void OnEventRaised(Vector3Int fish)
-        {
-            Response2Vector3Int.Invoke(fish);
-        }
-
-        public void OnEventRaised(string fish)
-        {
-            Respose2String.Invoke(fish);
+            Debug.Log("Event raised with value: " + arg);
+            if (arg.GetType() == typeof(int))
+                IntResponse.Invoke((int)(object)arg);
+            else if (arg.GetType() == typeof(bool))
+                BoolResponse.Invoke((bool)(object)arg);
+            else if (arg.GetType() == typeof(float))
+                FloatResponse.Invoke((float)(object)arg);
+            else if (arg.GetType() == typeof(Vector2))
+                Vector2Response.Invoke((Vector2)(object)arg);
+            else if (arg.GetType() == typeof(Vector3))
+                Vector3Response.Invoke((Vector3)(object)arg);
+            else if (arg.GetType() == typeof(Vector2Int))
+                Vector2IntResponse.Invoke((Vector2Int)(object)arg);
+            else if (arg.GetType() == typeof(Vector3Int))
+                Vector3IntResponse.Invoke((Vector3Int)(object)arg);
+            else if (arg.GetType() == typeof(string))
+                StringResponse.Invoke((string)(object)arg);
         }
 
     }
@@ -144,35 +126,45 @@ namespace Laserbean.CustomUnityEvents
 
             string eventname = "<Insert Game Event>";
             string eventtype = "";
-            if (game_event_field.objectReferenceValue) {
+            if (game_event_field.objectReferenceValue)
+            {
                 var path = AssetDatabase.GetAssetPath(game_event_field.objectReferenceValue).Split('/');
                 eventname = (path[path.Length - 1]).Split('.')[0];
 
-                if ((myScript.toggleEventVisibility & UsedEvents.Empty) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Empty) != 0)
+                {
                     eventtype += " (void)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Int) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Int) != 0)
+                {
                     eventtype += " (int)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Bool) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Bool) != 0)
+                {
                     eventtype += " (bool)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.String) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.String) != 0)
+                {
                     eventtype += " (string)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Float) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Float) != 0)
+                {
                     eventtype += " (float)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector2) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector2) != 0)
+                {
                     eventtype += " (Vector2)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector3) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector3) != 0)
+                {
                     eventtype += " (Vector3)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector2Int) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector2Int) != 0)
+                {
                     eventtype += " (Vector2Int)";
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector3Int) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector3Int) != 0)
+                {
                     eventtype += " (Vector3Int)";
                 }
                 // EditorGUILayout.BeginHorizontal();
@@ -185,37 +177,47 @@ namespace Laserbean.CustomUnityEvents
 
             showInfo = EditorGUILayout.BeginFoldoutHeaderGroup(showInfo, eventname + eventtype);
 
-            if (showInfo) {
+            if (showInfo)
+            {
                 DrawPropertiesExcluding(serializedObject, _dontIncludeMe);
 
                 // myScript.toggleEventVisibility = GUILayout.Toggle(myScript.toggleEventVisibility, "Flag");
                 // myScript.test = GUILayout.Toggle(myScript.test, "Some Bool");
-                if ((myScript.toggleEventVisibility & UsedEvents.Empty) != 0) {
+                if ((myScript.toggleEventVisibility & UsedEvents.Empty) != 0)
+                {
                     EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Int) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Int"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Int) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("IntResponse"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Bool) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Bool"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Bool) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("BoolResponse"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.String) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Respose2String"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.String) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("StringResponse"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Float) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Float"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Float) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("FloatResponse"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector2) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector2"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector2) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Vector2Response"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector3) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector3"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector3) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Vector3Response"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector2Int) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector2Int"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector2Int) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Vector2IntResponse"), true);
                 }
-                if ((myScript.toggleEventVisibility & UsedEvents.Vector3Int) != 0) {
-                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response2Vector3Int"), true);
+                if ((myScript.toggleEventVisibility & UsedEvents.Vector3Int) != 0)
+                {
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Vector3IntResponse"), true);
                 }
 
             }

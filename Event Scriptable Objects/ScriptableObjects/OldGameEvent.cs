@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Laserbean.CustomUnityEvents
 {
     [CreateAssetMenu(fileName = "NewGameEvent", menuName = "Events/Game Event")]
-    public class GameEvent : ScriptableObject
+    public class OldGameEvent : ScriptableObject
     {
         private List<GameEventListener> listeners = new();
 
