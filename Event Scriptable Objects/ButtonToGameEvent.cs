@@ -5,7 +5,7 @@ using UnityEngine;
 
 using Laserbean.CustomUnityEvents;
 
-public class buttonToGameEvent : MonoBehaviour
+public class ButtonToGameEvent : MonoBehaviour
 {
 
     [SerializeField] GameEvent buttonEvent;
