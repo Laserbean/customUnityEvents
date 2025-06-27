@@ -9,7 +9,7 @@ namespace Laserbean.CustomUnityEvents
     public class StringGameEvent : GenericGameEvent<string>
     {
         [Header("String Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is a String Game Event. It can be used to send string values to listeners.";
+        [ShowOnlyAttribute]  string description = "This is a String Game Event. It can be used to send string values to listeners.";
 
     }
 }

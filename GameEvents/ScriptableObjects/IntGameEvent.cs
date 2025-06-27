@@ -9,6 +9,6 @@ namespace Laserbean.CustomUnityEvents
     public class IntGameEvent : GenericGameEvent<int>
     {
         [Header("Int Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is an Int Game Event. It can be used to send int values to listeners.";
+        [ShowOnlyAttribute]  string description = "This is an Int Game Event. It can be used to send int values to listeners.";
     }
 }

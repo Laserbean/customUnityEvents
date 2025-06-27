@@ -9,6 +9,6 @@ namespace Laserbean.CustomUnityEvents
     public class Vector2IntGameEvent : GenericGameEvent<Vector2Int>
     {
         [Header("Vector2Int Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is a Vector2Int Game Event. It can be used to send Vector2Int values to listeners.";
+        [ShowOnlyAttribute]string description = "This is a Vector2Int Game Event. It can be used to send Vector2Int values to listeners.";
     }
 }

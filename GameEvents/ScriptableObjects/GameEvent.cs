@@ -10,8 +10,12 @@ namespace Laserbean.CustomUnityEvents
     public class GameEvent : ScriptableObject
     {
 
-        [Header("Float Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is a normal Game Event. Doesn't send anything but notifies when raised.";
+        // [Header("Float Game Event"), SerializeField]
+        // [ShowOnlyAttribute] string base_description = "This is a normal Game Event. Doesn't send anything but notifies when raised.";
+
+        [TextArea(3, 3), SerializeField]
+        protected string Notes;
+
         protected List<GameEventListener> listeners = new List<GameEventListener>();
 
         public void Raise()

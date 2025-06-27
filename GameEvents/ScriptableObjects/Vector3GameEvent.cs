@@ -9,7 +9,7 @@ namespace Laserbean.CustomUnityEvents
     public class Vector3GameEvent : GenericGameEvent<Vector3>
     {
         [Header("Vector3 Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is a Vector3 Game Event. It can be used to send Vector3 values to listeners.";
+        [ShowOnlyAttribute]  string description = "This is a Vector3 Game Event. It can be used to send Vector3 values to listeners.";
 
     }
 }
