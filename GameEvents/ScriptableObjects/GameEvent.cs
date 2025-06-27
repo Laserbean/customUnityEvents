@@ -16,7 +16,7 @@ namespace Laserbean.CustomUnityEvents
         [TextArea(3, 3), SerializeField]
         protected string Notes;
 
-        protected List<GameEventListener> listeners = new List<GameEventListener>();
+        protected List<IGameEventListener> listeners = new List<IGameEventListener>();
 
         public void Raise()
         {
@@ -26,7 +26,7 @@ namespace Laserbean.CustomUnityEvents
             }
         }
 
-        public void RegisterListener(GameEventListener listener)
+        public void RegisterListener(IGameEventListener listener)
         {
             if (!listeners.Contains(listener))
             {
@@ -34,12 +34,13 @@ namespace Laserbean.CustomUnityEvents
             }
         }
 
-        public void UnregisterListener(GameEventListener listener)
+        public void UnregisterListener(IGameEventListener listener)
         {
             if (listeners.Contains(listener))
             {
                 listeners.Remove(listener);
             }
         }
+        
     }
 }

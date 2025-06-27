@@ -39,6 +39,14 @@ public class GameEventTest : MonoBehaviour
         {
             vector3GameEvent.RaiseDefaultValue();
         }
+        else if (gameEvent is Vector2IntGameEvent vector2IntGameEvent)
+        {
+            vector2IntGameEvent.RaiseDefaultValue();
+        }
+        else if (gameEvent is Vector3IntGameEvent vector3IntGameEvent)
+        {
+            vector3IntGameEvent.RaiseDefaultValue();
+        }
 
     }
 

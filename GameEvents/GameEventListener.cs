@@ -7,7 +7,7 @@ using UnityEditor;
 namespace Laserbean.CustomUnityEvents
 {
     [AddComponentMenu("customUnityEvents/Game Event Listener")]
-    public class GameEventListener : MonoBehaviour
+    public class GameEventListener : MonoBehaviour, IGameEventListener
     {
         [Tooltip("Create a GameEvent in the Assets folder. (Create > GameEvent).")]
         public GameEvent Event;
@@ -39,11 +39,20 @@ namespace Laserbean.CustomUnityEvents
 
         private void OnEnable()
         {
+            if (Event == null)
+            {
+                Debug.LogWarning("GameEventListener: No GameEvent assigned. Please assign a GameEvent in the inspector.");
+                return;
+            }
             Event.RegisterListener(this);
         }
 
         private void OnDisable()
         {
+            if (Event == null)
+            {
+                return;
+            }
             Event.UnregisterListener(this);
         }
 
