@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Laserbean.CustomUnityEvents
 {
-    [CreateAssetMenu(fileName = "Vector3GameEvent", menuName = "Scriptable Objects/Laserbean Game Events/Vector3GameEvent")]
+    [CreateAssetMenu(fileName = "Vector3GameEvent", menuName = "Scriptable Objects/Laserbean Game Events/Vector3GameEvent", order = 7)]
     public class Vector3GameEvent : GenericGameEvent<Vector3>
     {
         [Header("Vector3 Game Event"), SerializeField]

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Laserbean.CustomUnityEvents
 {
-    [CreateAssetMenu(fileName = "FloatGameEvent", menuName = "Scriptable Objects/Laserbean Game Events/FloatGameEvent")]
+    [CreateAssetMenu(fileName = "FloatGameEvent", menuName = "Scriptable Objects/Laserbean Game Events/FloatGameEvent", order = 3)]
     public class FloatGameEvent : GenericGameEvent<float>
     {
         [Header("Float Game Event"), SerializeField]

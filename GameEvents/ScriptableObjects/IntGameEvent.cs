@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Laserbean.CustomUnityEvents
 {
-    [CreateAssetMenu(fileName = "IntGameEvent", menuName = "Scriptable Objects/Laserbean Game Events/IntGameEvent")]
+    [CreateAssetMenu(fileName = "IntGameEvent", menuName = "Scriptable Objects/Laserbean Game Events/IntGameEvent", order = 2)]
     public class IntGameEvent : GenericGameEvent<int>
     {
         [Header("Int Game Event"), SerializeField]

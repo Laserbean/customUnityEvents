@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Laserbean.CustomUnityEvents
 {
-    [CreateAssetMenu(fileName = "BoolGameEvent", menuName = "Scriptable Objects/Laserbean Game Events/BoolGameEvent")]
+    [CreateAssetMenu(fileName = "BoolGameEvent", menuName = "Scriptable Objects/Laserbean Game Events/BoolGameEvent", order = 4)]
     public class BoolGameEvent : GenericGameEvent<bool>
     {
         [Header("Bool Game Event"), SerializeField]

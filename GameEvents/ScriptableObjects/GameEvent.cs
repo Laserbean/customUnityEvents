@@ -6,9 +6,12 @@ namespace Laserbean.CustomUnityEvents
 {
     [System.Serializable]
 
-    [CreateAssetMenu(fileName = "GameEvent", menuName = "Scriptable Objects/Laserbean Game Events/GameEvent")]
+    [CreateAssetMenu(fileName = "GameEvent", menuName = "Scriptable Objects/Laserbean Game Events/GameEvent", order = 1)]
     public class GameEvent : ScriptableObject
     {
+
+        [Header("Float Game Event"), SerializeField]
+        [ShowOnlyAttribute] string description = "This is a normal Game Event. Doesn't send anything but notifies when raised.";
         protected List<GameEventListener> listeners = new List<GameEventListener>();
 
         public void Raise()
