@@ -13,10 +13,11 @@ namespace Laserbean.CustomUnityEvents
     public abstract class GenericGameEvent<T> : GameEvent
     {
 
+        protected new event System.Action<T> OnEventRaised;
+
         public void Raise(T arg)
         {
-            for (int i = listeners.Count - 1; i >= 0; i--)
-                listeners[i].OnEventRaised(arg);
+            OnEventRaised?.Invoke(arg);
         }
 
         [SerializeField]
@@ -25,6 +26,16 @@ namespace Laserbean.CustomUnityEvents
         public void RaiseDefaultValue()
         {
             Raise(defaultValue);
+        }
+
+        public override void RegisterListener(IGameEventListener listener)
+        {
+            OnEventRaised += listener.OnEventRaised;
+        }
+
+        public override void UnregisterListener(IGameEventListener listener)
+        {
+            OnEventRaised -= listener.OnEventRaised;
         }
     }
 }
