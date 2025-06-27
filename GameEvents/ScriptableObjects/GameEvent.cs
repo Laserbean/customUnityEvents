@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 namespace Laserbean.CustomUnityEvents
 {
@@ -33,6 +34,16 @@ namespace Laserbean.CustomUnityEvents
         {
             OnEventRaised -= listener.OnEventRaised;
         }
-        
+
+        public void RegisterListener(Action arg)
+        {
+            OnEventRaised += arg;
+        }
+
+        public void UnregisterListener(Action arg)
+        {
+            OnEventRaised -= arg;
+        }
+
     }
 }

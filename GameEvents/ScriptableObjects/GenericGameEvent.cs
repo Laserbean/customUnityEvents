@@ -37,5 +37,15 @@ namespace Laserbean.CustomUnityEvents
         {
             OnEventRaised -= listener.OnEventRaised;
         }
+
+        public void RegisterListener(Action<T> arg)
+        {
+            OnEventRaised += arg;
+        }   
+
+        public void UnregisterListener(Action<T> arg)
+        {
+            OnEventRaised -= arg;
+        }
     }
 }
