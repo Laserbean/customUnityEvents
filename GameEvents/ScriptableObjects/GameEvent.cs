@@ -14,7 +14,7 @@ namespace Laserbean.CustomUnityEvents
         // [Header("Float Game Event"), SerializeField]
         // [ShowOnlyAttribute] string base_description = "This is a normal Game Event. Doesn't send anything but notifies when raised.";
 
-        [TextArea(3, 3), SerializeField]
+        [TextArea(GameEventGlobal.TextAreaSizeX, GameEventGlobal.TextAreaSizeY), SerializeField]
         protected string Notes;
 
         protected event System.Action OnEventRaised;
