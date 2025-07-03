@@ -7,7 +7,7 @@ namespace Laserbean.CustomUnityEvents
 {
     [System.Serializable]
 
-    [CreateAssetMenu(fileName = "GameEvent", menuName = "Scriptable Objects/Laserbean Game Events/GameEvent", order = 1)]
+    [CreateAssetMenu(fileName = "GameEvent", menuName = GameEventGlobal.SOMenuPath + "/GameEvent", order = 1)]
     public class GameEvent : ScriptableObject
     {
 
