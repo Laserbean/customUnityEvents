@@ -9,7 +9,13 @@ namespace Laserbean.CustomUnityEvents
     public class BoolGameEvent : GenericGameEvent<bool>
     {
         [Header("Bool Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is a Bool Game Event. It can be used to send bool values to listeners.";
+
+#if UNITY_EDITOR
+        [ShowOnlyAttribute]
+#endif
+
+
+        string description = "This is a Bool Game Event. It can be used to send bool values to listeners.";
 
     }
 }

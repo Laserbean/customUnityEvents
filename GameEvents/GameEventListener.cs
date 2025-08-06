@@ -58,13 +58,13 @@ namespace Laserbean.CustomUnityEvents
 
         public void OnEventRaised()
         {
-            Debug.Log("Event raised without value.");
+            // Debug.Log("Event raised without value.");
             Response.Invoke();
         }
 
         public void OnEventRaised<T>(T arg)
         {
-            Debug.Log("Event raised with value: " + arg);
+            // Debug.Log("Event raised with value: " + arg);
             if (arg.GetType() == typeof(int))
                 IntResponse.Invoke((int)(object)arg);
             else if (arg.GetType() == typeof(bool))

@@ -8,6 +8,9 @@ namespace Laserbean.CustomUnityEvents
     public class FloatGameEvent : GenericGameEvent<float>
     {
         [Header("Float Game Event"), SerializeField]
-        [ShowOnlyAttribute] string description = "This is a Float Game Event. It can be used to send float values to listeners.";
+#if UNITY_EDITOR
+        [ShowOnlyAttribute]
+#endif
+        string description = "This is a Float Game Event. It can be used to send float values to listeners.";
     }
 }
