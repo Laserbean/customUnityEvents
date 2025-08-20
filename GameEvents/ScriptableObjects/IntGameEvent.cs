@@ -5,10 +5,13 @@ using UnityEngine;
 
 namespace Laserbean.CustomUnityEvents
 {
-    [CreateAssetMenu(fileName = "IntGameEvent", menuName = GameEventGlobal.SOMenuPath + "/IntGameEvent", order = 2)]
-    public class IntGameEvent : GenericGameEvent<int>
-    {
-        [Header("Int Game Event"), SerializeField]
-        [ShowOnlyAttribute]  string description = "This is an Int Game Event. It can be used to send int values to listeners.";
-    }
+  [CreateAssetMenu(fileName = "IntGameEvent", menuName = GameEventGlobal.SOMenuPath + "/IntGameEvent", order = 2)]
+  public class IntGameEvent : GenericGameEvent<int>
+  {
+    [Header("Int Game Event"), SerializeField]
+#if UNITY_EDITOR
+        [ShowOnlyAttribute]
+#endif
+    string description = "This is an Int Game Event. It can be used to send int values to listeners.";
+  }
 }
