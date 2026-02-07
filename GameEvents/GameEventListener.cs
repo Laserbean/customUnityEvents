@@ -33,9 +33,12 @@ namespace Laserbean.CustomUnityEvents
         public UnityEvent<Vector3Int> Vector3IntResponse;
 
 
+
         [HideInInspector]
         public UnityEvent<string> StringResponse;
 
+        [HideInInspector]
+        public UnityEvent<Transform> TransformResponse;
 
         private void OnEnable()
         {
@@ -81,6 +84,8 @@ namespace Laserbean.CustomUnityEvents
                 Vector3IntResponse.Invoke((Vector3Int)(object)arg);
             else if (arg.GetType() == typeof(string))
                 StringResponse.Invoke((string)(object)arg);
+            else if (arg.GetType() == typeof(Transform))
+                TransformResponse.Invoke((Transform)(object)arg);
         }
 
     }
@@ -177,6 +182,8 @@ namespace Laserbean.CustomUnityEvents
                     EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Vector2IntResponse"), true);
                 else if (eventType.Name == "Vector3IntGameEvent")
                     EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Vector3IntResponse"), true);
+                else if (eventType.Name == "TransformGameEvent")
+                    EditorGUILayout.PropertyField(this.serializedObject.FindProperty("TransformResponse"), true);
                 else // fallback for base GameEvent or unknown types
                     EditorGUILayout.PropertyField(this.serializedObject.FindProperty("Response"), true);
             }
