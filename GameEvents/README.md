@@ -29,3 +29,5 @@ Use the **Game Event Listener** script.
 It will automatically show the correct UnityEvent type for the attached GameEvent scriptable object. 
 All you need to do is to select the appropriate function.  
 
+### TODO
+Make the gameevents have the += thing for easy event adding thing. 
