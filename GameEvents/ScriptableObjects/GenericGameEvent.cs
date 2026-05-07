@@ -27,4 +27,23 @@ namespace Laserbean.CustomUnityEvents
             Raise(defaultValue);
         }
     }
+
+    // public abstract class GenericGameEvent<T, T2> : GameEvent
+    // {
+
+    //     public void Raise(T arg, T2 arg2)
+    //     {
+    //         for (int i = listeners.Count - 1; i >= 0; i--)
+    //             listeners[i].OnEventRaised(arg, arg2);
+    //     }
+
+    //     [SerializeField]
+    //     private T defaultValue;
+    //     private T2 defaultValue2;
+
+    //     public void RaiseDefaultValue()
+    //     {
+    //         Raise(defaultValue, defaultValue2);
+    //     }
+    // }
 }
